@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<robot name="robot_example">
+
+    <link name="world"/>
+
+    <link name="base_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.15" length="0.4"/>
+            </geometry>
+            <material name="red">
+                <color rgba="0.5 0.0 0.0 1.0" />
+            </material>
+        </visual>        
+    </link>
+    
+    <joint name="continuous_joint" type="continuous">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0 0 0.2" rpy="0 0 0"/>
+    </joint>
+
+    <link name="rail_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.6" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.15 0.15 1.2"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 0.5 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="fixed_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="rail_link"/>
+        <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
+    </joint>
+    
+    <link name="slider_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.25 0.25 0.25"/>
+            </geometry>
+            <material name="green">
+                <color rgba="0.0 0.5 0.0 1.0" />
+            </material>
+        </visual>
+        
+    </link>
+    
+    <joint name="prismatic_joint" type="prismatic">
+        <parent link="rail_link"/>
+        <child link="slider_link"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0.0" upper="0.075" velocity="0.5" effort="1000.0"/>
+        <origin xyz="0 0 0.225" rpy="0 0 0"/>
+    </joint>
+
+    <link name="arm_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.15 0.15 0.8"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.35 0.35 0.35 1.0" />
+            </material>
+        </visual>
+    </link>
+    
+    <joint name="revolute_joint" type="revolute">
+        <parent link="slider_link"/>
+        <child link="arm_link"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.8" upper="0.8" velocity="50.0" effort="1000.0"/>
+        <origin xyz="0 0.2 0" rpy="0 -1.57 0"/>
+    </joint>
+    
+    
+</robot>
