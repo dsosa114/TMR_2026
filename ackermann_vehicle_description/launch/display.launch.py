@@ -8,10 +8,10 @@ import os
 
 def generate_launch_description():
 
-    urdf_file_path = os.path.join(get_package_share_path('urdf_example'),
-                                  'urdf', 'joints.urdf')
+    urdf_file_path = os.path.join(get_package_share_path('ackermann_vehicle_description'),
+                                  'urdf', 'mobile_base.urdf')
     
-    rviz_config_path = os.path.join(get_package_share_path('urdf_example'),
+    rviz_config_path = os.path.join(get_package_share_path('ackermann_vehicle_description'),
                                   'rviz', 'rviz_config.rviz')
     
     robot_description = ParameterValue(Command(['xacro ', urdf_file_path]), value_type=str)
