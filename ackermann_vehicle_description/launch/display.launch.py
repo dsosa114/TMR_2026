@@ -9,7 +9,7 @@ import os
 def generate_launch_description():
 
     urdf_file_path = os.path.join(get_package_share_path('ackermann_vehicle_description'),
-                                  'urdf', 'mobile_base.urdf')
+                                  'urdf', 'ackermann_robot.urdf.xacro')
     
     rviz_config_path = os.path.join(get_package_share_path('ackermann_vehicle_description'),
                                   'rviz', 'rviz_config.rviz')
